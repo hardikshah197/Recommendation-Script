@@ -3,7 +3,7 @@ async function fetchStates(db) {
     let data = [];
     console.log("fetching states from db");
     try {
-        const collection = db.collection("State");
+        const collection = db.collection("states");
         const cursor = collection.find({});
         data = await cursor.toArray();
     }
@@ -19,7 +19,7 @@ async function fetchUsers(db) {
     let data = [];
     console.log("fetching users from db");
     try {
-        const collection = db.collection("User");
+        const collection = db.collection("users");
         const cursor = collection.find({});
         data = await cursor.toArray();
     }

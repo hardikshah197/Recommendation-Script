@@ -4,12 +4,12 @@ const { connect, disconnect } = require("./utils/dbconnection");
 async function main() {
 
     try {
-        const db = await connect();
+        const { sdeDB, userDB } = await connect();
 
-        const states = await fetchStates(db);
+        const states = await fetchStates(sdeDB);
         console.log(states);
 
-        const users = await fetchUsers(db);
+        const users = await fetchUsers(userDB);
         console.log(users);
 
         await disconnect();

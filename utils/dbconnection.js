@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 
 const env = process.env.NODE_ENV || 'development';
-const { uri, database } = require("../config/config")[env]
+const { uri, sdeDBName, userDBName } = require("../config/config")[env]
 
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
@@ -12,12 +12,14 @@ async function connect() {
     try {
         await client.connect();
         console.log('connected to mongodb')
-        const db = client.db(database);
-        return db;
+        const sdeDB = client.db(sdeDBName);
+        const userDB = client.db(userDBName);
+        return { userDB, sdeDB };
     }
     catch(error) {
         let msg = `[Error] db connection error: ${error}`
-        return msg
+        console.log(msg);
+        return {}
     }
 }
 
