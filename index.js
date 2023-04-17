@@ -1,4 +1,5 @@
 const { fetchStates, fetchUsers } = require("./helper/dbhelper");
+const { hashingJSON } = require("./helper/misc");
 const { connect, disconnect } = require("./utils/dbconnection");
 
 async function main() {
@@ -11,6 +12,15 @@ async function main() {
 
         const users = await fetchUsers(userDB);
         console.log(users);
+
+        for (let i=0; i<states.length; i++) {
+            let state = states[i];
+            let userId = ""
+
+            let hashedKey = hashingJSON({ userId, state })
+            
+
+        }
 
         await disconnect();
     } 
